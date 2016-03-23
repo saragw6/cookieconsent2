@@ -1,0 +1,119 @@
+{
+  "resources": {
+    "head": [
+      {
+        "type": "script",
+        "src": "./cookieconsent.js"
+      },
+      {
+        "type": "script",
+        "src": "./eagerapp.js"
+      }
+    ]
+  },
+  "preview": {
+    "handlers": [
+      {
+        "options": ["message", "dismiss", "learnMore", "link"],
+        "execute": "INSTALL_SCOPE.setOptions(INSTALL_OPTIONS)"
+      },
+      {
+        "options": ["showAdvanced", "path", "domain", "expiryDays"],
+        "reload": false
+      }
+    ]
+  },
+  "options": {
+    "properties":{
+      "message": {
+        "order": 1,
+        "title": "Headline Text",
+        "type": "string",
+        "format": "textarea",
+        "default": "This website uses cookies to ensure you get the best experience on our website."
+      },
+      "dismiss": {
+        "order": 2,
+        "title": "Accept Button Text",
+        "type": "string",
+        "default": "Got it!"
+      },
+      "link": {
+        "order": 3,
+        "title": "Learn More Link URL",
+        "type": "string",
+        "default": "",
+        "description": "Provide a link to you cookie policy, if you'd like."
+      },
+      "learnMore": {
+        "order": 4,
+        "title": "Learn More Link Text",
+        "type": "string",
+        "default": "More info",
+        "showIf": {"link": { "op": "!=",
+          "value": ""}}
+      },
+      "theme": {
+        "order": 5,
+        "title": "Theme",
+        "type": "string",
+        "description": "Choose a color scheme and position.",
+        "enum": [
+          "false",
+          "dark-top",
+          "dark-floating",
+          "dark-bottom",
+          "light-top",
+          "light-floating",
+          "light-bottom"
+          ],
+        "enumNames": {
+          "false": "Do not use preset theme",
+          "dark-top": "Dark Top",
+          "dark-floating": "Dark Floating",
+          "dark-bottom": "Dark Bottom",
+          "light-top": "Light Top",
+          "light-floating": "Light Floating",
+          "light-bottom": "Light Bottom"
+        },
+        "default": "dark-top"
+      },
+      "showAdvanced": {
+        "order": 6,
+        "title": "Show advanced options",
+        "type": "boolean",
+        "default": false
+      },
+      "path": {
+        "order": 7,
+        "showIf": {
+          "showAdvanced": true
+        },
+        "title": "Path",
+        "description": "The path for the consent cookie that Cookie Consent uses, to remember that users have consented to cookies. Use to limit consent to a specific path within your website.",
+        "type": "string",
+        "default": "/"
+      },
+      "domain": {
+        "order": 8,
+        "showIf": {
+          "showAdvanced": true
+        },
+        "title": "Domain",
+        "description": "The domain for the consent cookie that Cookie Consent uses, to remember that users have consented to cookies. Useful if your website uses multiple subdomains, e.g. if your script is hosted at www.example.com you might override this to example.com, thereby allowing the same consent cookie to be read by subdomains like foo.example.com.",
+        "type": "string",
+        "default": ""
+      },
+      "expiryDays": {
+        "order": 9,
+        "showIf": {
+          "showAdvanced": true
+        },
+        "title": "Days until expiration",
+        "description": "The number of days Cookie Consent should store the user’s consent information for.",
+        "type": "integer",
+        "default": 365
+      }
+    }
+  }
+}
